@@ -4,8 +4,9 @@ from capa import Capa
 class Dense(Capa):
 
     def __init__(self, n_input, n_output):
-        self.weights = np.random.randn(n_input, n_output) * np.sqrt(2 / n_input)  # He initialization
-        self.bias = np.random.rand(1, n_output)
+        limit = np.sqrt(6 / (n_input + n_output))
+        self.weights = np.random.uniform(-limit, limit, (n_input, n_output))
+        self.bias = np.zeros((1, n_output))
 
     def forward(self, input):
         self.input = input
