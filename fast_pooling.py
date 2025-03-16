@@ -2,7 +2,6 @@ import numpy as np
 from capa import Capa
 
 class Pooling(Capa):
-
     def __init__(self, kernel_size, stride):
         """
         Inicializa la capa de pooling.
@@ -38,13 +37,13 @@ class Pooling(Capa):
 
         # Inicializar la salida y los índices de los máximos
         output = np.zeros(self.output_shape)
-        self.indices = np.zeros(self.output_shape, dtype=object)  # Almacenará las coordenadas de los máximos
+        self.indices = np.zeros(self.output_shape, dtype=object)
 
         # Aplicar max pooling
         for img in range(batch_size):  # Iterar sobre cada imagen en el batch
             for d in range(depth):  # Iterar sobre cada canal (profundidad)
-                for i in range(0, out_height):
-                    for j in range(0, out_width):
+                for i in range(out_height):
+                    for j in range(out_width):
                         # Definir la ventana de pooling
                         h_start = i * self.stride
                         h_end = h_start + self.kernel_size

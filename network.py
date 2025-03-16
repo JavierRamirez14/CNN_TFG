@@ -27,6 +27,7 @@ def train(data, net, loss, loss_prime, epochs, learning_rate):
         for X, y in data:
             error = train_batch(X, y, net, loss, loss_prime, learning_rate)
             i += 1
+            print(i, end=' ')
 
             epoch_error += error
 
