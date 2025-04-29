@@ -1,13 +1,13 @@
 # Estructura general de una capa
 class Capa:
     def __init__(self):
-        self.input = None
-        self.output = None
+        self.input = None # Almacena la entrada de la capa
+        self.output = None # Almacena la salida de la capa
 
     def forward(self, input):
-        # TODO: return output
+        # Propagación hacia adelante
         pass
 
     def backward(self, output_gradient, learning_rate):
-        # TODO: update parameters and return input gradient
+        # Retropropagación
         pass

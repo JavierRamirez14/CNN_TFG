@@ -3,6 +3,14 @@ from capa import Capa
 
 class Convolution(Capa):
     def __init__(self, input_shape, kernel_size, n_kernels):
+        """
+        Versión optimizada de capa convolucional usando im2col.
+        
+        Args:
+            input_shape (tuple): Forma de entrada (canales, altura, ancho).
+            kernel_size (int): Tamaño del kernel (cuadrado).
+            n_kernels (int): Número de filtros convolucionales.
+        """
         depth, height, width = input_shape
         self.input_shape = input_shape
         self.depth = depth
@@ -19,10 +27,7 @@ class Convolution(Capa):
         self.biases = np.zeros(self.output_shape)
 
     def _im2col(self, input_data, kernel_size):
-        """
-        Transforma la entrada en una matriz que permite operaciones vectorizadas
-        para la convolución
-        """
+        """Transforma la entrada en una matriz que permite operaciones vectorizadas para la convolución"""
         batch_size, depth, height, width = input_data.shape
         out_height = height - kernel_size + 1
         out_width = width - kernel_size + 1
@@ -42,9 +47,7 @@ class Convolution(Capa):
         return col
 
     def _col2im(self, col, input_shape):
-        """
-        Función inversa de im2col para la propagación hacia atrás
-        """
+        """Función inversa de im2col para la retropropagación"""
         batch_size, depth, height, width = input_shape
         kernel_size = self.kernel_size
         out_height = height - kernel_size + 1
@@ -67,9 +70,7 @@ class Convolution(Capa):
         return img
 
     def forward(self, input):
-        """
-        Realiza la convolución utilizando operaciones matriciales
-        """
+        """Realiza la convolución utilizando operaciones matriciales"""
         self.input = input
         batch_size, depth, height, width = input.shape
         
@@ -93,9 +94,7 @@ class Convolution(Capa):
         return output
     
     def backward(self, input_gradient, learning_rate):
-        """
-        Propaga el gradiente hacia atrás
-        """
+        """Propaga el gradiente hacia atrás y actualiza kernels y biases"""
         batch_size = input_gradient.shape[0]
         
         # Reshape input_gradient para multiplicación matricial

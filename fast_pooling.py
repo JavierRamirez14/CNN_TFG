@@ -4,11 +4,11 @@ from capa import Capa
 class Pooling(Capa):
     def __init__(self, kernel_size, stride):
         """
-        Inicializa la capa de pooling.
+        Versión optimizada de la capa de max pooling.
         
         Args:
-            kernel_size (int): Tamaño de la ventana de pooling (por ejemplo, 2 para una ventana 2x2).
-            stride (int): Paso con el que se mueve la ventana de pooling.
+            kernel_size (int): Tamaño de la ventana de pooling (cuadrada).
+            stride (int): Paso de desplazamiento de la ventana (usualmente igual a kernel_size).
         """
         self.kernel_size = kernel_size
         self.stride = stride
@@ -17,15 +17,7 @@ class Pooling(Capa):
         self.indices = None  # Para almacenar los índices de los máximos (útil en la retropropagación)
 
     def forward(self, input):
-        """
-        Aplica la operación de max pooling sobre la entrada.
-        
-        Args:
-            input (numpy.ndarray): Entrada de la capa (batch_size, depth, height, width).
-        
-        Returns:
-            numpy.ndarray: Salida de la capa de pooling.
-        """
+        """Aplica la operación de max pooling sobre la entrada."""
         self.input = input
         batch_size, depth, height, width = input.shape
         self.input_shape = input.shape
@@ -60,16 +52,7 @@ class Pooling(Capa):
         return output
 
     def backward(self, input_gradient, learning_rate):
-        """
-        Realiza la retropropagación para la capa de pooling.
-        
-        Args:
-            input_gradient (numpy.ndarray): Gradiente de la salida de la capa de pooling.
-            learning_rate (float): Tasa de aprendizaje (no se usa en pooling, pero se incluye por consistencia).
-        
-        Returns:
-            numpy.ndarray: Gradiente de la entrada de la capa de pooling.
-        """
+        """Realiza la retropropagación para la capa de pooling."""
         batch_size, depth, out_height, out_width = input_gradient.shape
         output_gradient = np.zeros(self.input_shape)
 
