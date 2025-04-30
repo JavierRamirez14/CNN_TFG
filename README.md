@@ -69,9 +69,9 @@ La CNN desarrollada se entrenó con los datos de train del dataset *Bran Tumor M
 - **Accuracy: 95.27%**
 - **AUC ROC promedio: 0.99**
 
-![Matriz de Confusión](https://github.com/JavierRamirez14/CNN_TFG/blob/main/resultados/matriz_confusion.png)
+![Matriz de Confusión](https://github.com/JavierRamirez14/CNN_TFG/blob/master/resultados/matriz_confusion.png)
 
-![Reporte de Clasificación](https://github.com/JavierRamirez14/CNN_TFG/blob/main/resultados/reporte_clasificacion.png)
+![Reporte de Clasificación](https://github.com/JavierRamirez14/CNN_TFG/blob/master/resultados/reporte_clasificacion.png)
 
 ---
 
@@ -84,7 +84,7 @@ El modelo desarrollado desde cero se comparó con los siguientes modelos:
 
 Los resultados fueron los siguientes:
 
-![Comparación de Métricas Globales entre Modelos](https://github.com/JavierRamirez14/CNN_TFG/blob/main/resultados/comparacion_metricas_modelos.png)
+![Comparación de Métricas Globales entre Modelos](https://github.com/JavierRamirez14/CNN_TFG/blob/master/resultados/comparacion_metricas_modelos.png)
 
 ## 6. Ejecución del Proyecto
 
